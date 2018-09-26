@@ -36,7 +36,12 @@
 PC端模式：
 ![](https://raw.githubusercontent.com/wiki/inmyjs/asweb/images/wiki_8.png)
 
-### 非常感谢您的支持
-撸码不易，如果对你有所帮助，欢迎您的赞赏！微信赞赏码：
+### 五、增加跳转功能
 
-![](https://raw.githubusercontent.com/wiki/inmyjs/asweb/images/20180831154543.jpg)
+在地址后面增加如下参数可以直接跳转到指定页面  
+参数 `s` 需要跳转的页面，从 0 开始。   
+参数 `delay` 为延迟秒数，默认为 4 秒。
+```
+?s=5&delay=10
+```
+
