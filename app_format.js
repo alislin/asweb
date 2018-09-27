@@ -826,8 +826,10 @@ window.TrackTransform = function () {
                 url: "resources/fonts/fzcyjt.ttf"
             },
             kt: {
-                str: "@font-face{font-family:'kt'; src: url('resources/fonts/kt.ttf') format('truetype'); }",
-                url: "resources/fonts/kt.ttf"
+                // str: "@font-face{font-family:'kt'; src: url('resources/fonts/kt.ttf') format('truetype'); }",
+                // url: "resources/fonts/kt.ttf"
+                str: "@font-face{font-family:'kt'; src: url('resources/fonts/kt_GB2312.ttf') format('truetype'); }",
+                url: "resources/fonts/kt_GB2312.ttf"
             },
             "华文楷体": {
                 str: "@font-face{font-family:'华文楷体'; src: url('resources/fonts/kt.ttf') format('truetype'); }",
