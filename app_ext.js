@@ -37,7 +37,7 @@ function Tongji() {
     })();
 }
 
-function initHighlight(){
+function initHighlight() {
     hljs.initHighlightingOnLoad();
     var rendererMD = new marked.Renderer();
     // marked.setOptions({
@@ -52,19 +52,49 @@ function initHighlight(){
     // });
     marked.setOptions({
         highlight: function (code) {
-        return hljs.highlightAuto(code).value;
-      }
+            return hljs.highlightAuto(code).value;
+        }
     });
 }
 
-function initGotoFrame(seek,delay){
+function initGotoFrame(seek, delay) {
     if (Player.PlayerCommon.getInstance().isLoadCompleted) {
         gotoFrame(seek);
         return;
     }
     setTimeout(() => {
-        initGotoFrame(seek,delay);
+        initGotoFrame(seek, delay);
     }, delay);
+}
+
+///计算两个整数的百分比值
+function GetPercent(num, total, point) {
+    num = parseFloat(num);
+    total = parseFloat(total);
+    if (isNaN(num) || isNaN(total)) {
+        return "-";
+    }
+    if (isNaN(point) || point < 0) { point = 0; }
+    var n = 1.00;
+    for (let index = 0; index < point.length; index++) {
+        n = n * 10;
+    }
+    return total <= 0 ? "0%" : (Math.round(num / total * 100 * n) / n + "%");
+}
+
+function loadingProgress(id) {
+    if (preloadResourceCountMax == 0 && preloadResourceCount > 0) {
+        preloadResourceCountMax = preloadResourceCount;
+    }
+    if (preloadResourceCount > 0) {
+        document.getElementById(id).innerHTML = GetPercent(preloadResourceCountMax - preloadResourceCount, preloadResourceCountMax) + " (剩余 " + preloadResourceCount + ")";
+    }
+    if (Player.PlayerCommon.getInstance().isLoadCompleted) {
+        return;
+    }
+    setTimeout(() => {
+        loadingProgress(id);
+    }, 1000);
 }
 
 function app_ext() {
@@ -73,6 +103,8 @@ function app_ext() {
     if (!seek) { seek = 0; }
     if (!delay) { delay = 4; }
     Tongji();
-    initGotoFrame(seek,delay*1000);
+    initGotoFrame(seek, delay * 1000);
+    loadingProgress("loading_info");
 }
+var preloadResourceCountMax = 0;
 app_ext();

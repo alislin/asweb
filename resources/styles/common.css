@@ -396,12 +396,13 @@ a,a:hover {
 }
 
 .load-more.bigger {
-    width: 138px;
+    width: auto;
     height: 38px;
     line-height: 38px;
     top: 50%;
     margin-top: -19px;
     margin-left: -69px;
+    padding-right: 15px;
     background-color: #4a4a4a;
     border-radius: 2px;
 }
